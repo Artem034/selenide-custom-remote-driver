@@ -20,7 +20,7 @@ dependencies {
     implementation 'org.slf4j:slf4j-simple:1.7.35'
 
     //UI
-    implementation 'com.codeborne:selenide:6.3.0'
+    implementation 'com.codeborne:selenide:6.3.1'
     implementation 'io.qameta.allure:allure-selenide:2.17.2'
     implementation 'org.selenide:selenide-selenoid:2.2.0'
 }
@@ -30,7 +30,7 @@ compileJava.options.encoding = 'UTF-8'
 task webMobile(type: Test) {
 
     systemProperties(System.getProperties())
-    systemProperty("selenide.remote", "http://YOUR_SELENOID_URL:4444/wd/hub/")
+    systemProperty("selenide.remote2", "http://YOUR_SELENOID_URL:4444/wd/hub/")
     useJUnitPlatform {
         includeTags 'webMobile'
     }

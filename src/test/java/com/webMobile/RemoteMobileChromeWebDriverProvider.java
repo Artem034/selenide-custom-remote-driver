@@ -41,16 +41,20 @@ public class RemoteMobileChromeWebDriverProvider implements WebDriverProvider {
         logPrefs.enable(LogType.BROWSER, Level.ALL);
         chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 
-        chromeOptions.setCapability("browserName", "chrome");
-        chromeOptions.setCapability("browserVersion", "96.0");
+        // не нужно. chromeOptions и так дает browserName=chrome
+        // chromeOptions.setCapability("browserName", "chrome");
+
+        // это нужно, но в твоем селеноиде нет 96 хрома. только latest.
+        // http://xxxxxxxxx:4444/status
+        // "browsers":{"chrome":{"latest":{}},"safari":{"latest":{}}}}
+        //chromeOptions.setCapability("browserVersion", "96.0");
         chromeOptions.setCapability("selenoid:options", Map.<String, Boolean>of(
                 "enableVideo", true,
                 "acceptInsecureCerts", false
         ));
-        Configuration.browserCapabilities = chromeOptions;
 
         try {
-            return new RemoteWebDriver(new URL(System.getProperty("selenide.remote")), chromeOptions);
+            return new RemoteWebDriver(new URL(System.getProperty("selenide.remote2")), chromeOptions);
         } catch (final MalformedURLException e) {
             throw new RuntimeException("Unable to create driver", e);
         }
